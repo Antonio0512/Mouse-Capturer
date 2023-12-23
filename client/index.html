@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="index.css" />
+        <title>Mouse Capture</title>
+
+        <script>
+            window.addEventListener("DOMContentLoaded", () => {
+                const websocket = new WebSocket("ws://localhost:8000/");
+
+                websocket.onopen = function (event) {
+                    console.log("WebSocket connection opened:", event);
+                };
+
+                websocket.onmessage = function (event) {
+                    console.log("WebSocket message received:", event);
+                };
+
+                websocket.onclose = function (event) {
+                    console.log("WebSocket connection closed:", event);
+                };
+
+                websocket.onerror = function (event) {
+                    console.error("WebSocket error:", event);
+                };
+
+                const element = document.getElementsByClassName("position")[0];
+
+                document.addEventListener("click", () => {
+                    websocket.send(element.textContent);
+                });
+
+                websocket.onmessage = ({ data }) => {
+                    element.textContent = data;
+                };
+            });
+        </script>
+
+        <style>
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: #f2f2f2;
+            }
+
+            .wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+            }
+
+            p {
+                font-size: 30px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="wrapper">
+                <p>Current Mouse Position:</p>
+                <p class="position"></p>
+            </div>
+        </div>
+    </body>
+</html>
