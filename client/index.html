@@ -33,17 +33,29 @@
                 });
 
                 websocket.onmessage = ({ data }) => {
-                    element.textContent = data;
+                    const coordinates = data.substring(1, data.length - 1);
+                    const [x, y] = coordinates
+                        .split(",")
+                        .map((coord) => parseInt(coord.trim()));
+
+                    element.textContent = `x: ${x}, y: ${y}`;
                 };
             });
         </script>
 
         <style>
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
             .container {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background: #f2f2f2;
+                height: 100%;
             }
 
             .wrapper {
@@ -56,7 +68,6 @@
             p {
                 font-size: 30px;
             }
-
         </style>
     </head>
 
