@@ -80,9 +80,6 @@ async def read_clicks(websocket):
 
         on_click(data)
 
-        await asyncio.sleep(0.1)
-
-
 def start_websocket_server():
     database.setup()
     start_server = websockets.serve(

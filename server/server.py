@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 HOST = os.environ.get("SERVER_HOST", "localhost")
-PORT = int(os.environ.get("SERVER_PORT"), 8080)
+PORT = int(os.environ.get("SERVER_PORT", "8080"))
 
 class MyServer(BaseHTTPRequestHandler):
     # Responds to a GET request
