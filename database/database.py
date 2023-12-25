@@ -8,7 +8,6 @@ class DatabaseManager:
         self.cursor = None
 
     def connect(self):
-        print(os.path.join(os.getcwd(), 'coords_images.db'))
         if not os.path.exists(self.database_path):
             print(f"Creating SQLite file at: {self.database_path}")
             open(self.database_path, 'a').close()

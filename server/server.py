@@ -28,7 +28,13 @@ class MyServer(BaseHTTPRequestHandler):
             self.wfile.write(bytes(file.read(), 'utf-8'))
 
 
-if __name__ == "__main__":
-    server = HTTPServer((HOST, PORT), MyServer)
-    print(f'Server started - http://{HOST}:{PORT}')
-    server.serve_forever()
+def start_http_server():
+    try:
+        server = HTTPServer((HOST, PORT), MyServer)
+        print(f'Server started - http://{HOST}:{PORT}')
+        server.serve_forever()
+    except KeyboardInterrupt:
+        server.server_close()
+        print("HTTP server closed successfully")
+    except Exception as err:
+        print(f"Failed to start HTTP server: {str(err)}")

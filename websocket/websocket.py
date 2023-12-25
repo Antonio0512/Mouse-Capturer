@@ -80,11 +80,14 @@ async def read_clicks(websocket):
 
         on_click(data)
 
-def start_websocket_server():
+async def start_websocket_server():
     database.setup()
-    start_server = websockets.serve(
-        setup_websocket, HOST, PORT,
-)
-    print(f"Web socket started - http://{HOST}:{PORT}")
-    asyncio.get_event_loop().run_until_complete(start_server)
-    asyncio.get_event_loop().run_forever()
+
+    try:
+        server = await websockets.serve(
+            setup_websocket, HOST, PORT,
+        )
+        print(f"Web socket started - ws://{HOST}:{PORT}")
+        await server.wait_closed()
+    except Exception as err:
+        print(f"Failed to start WebSocket server: {err}")
