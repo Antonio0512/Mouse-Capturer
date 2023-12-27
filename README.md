@@ -8,8 +8,7 @@ Mouse-Capture is a simple project that captures and displays real-time mouse coo
     -   [Prerequisites](#prerequisites)
     -   [Installation](#installation)
 -   [Usage](#usage)
-    -   [Starting the Server](#starting-the-server)
-    -   [Connecting to WebSocket](#connecting-to-websocket)
+    -   [Starting the Program](#starting-the-program)
 -   [Project Structure](#project-structure)
 
 ## Getting Started
@@ -51,33 +50,21 @@ Before you begin, ensure you have the following installed on your machine:
 
 ## Usage
 
-### Starting the HTTP Server
+### Starting the program
 
-1. Open a terminal and navigate to the server folder.
-
-2. Run the HTTP Server
-
-    ```bash
-    python server.py
-    ```
-
-3. The HTTP server will start, and you should see a message indicating the server has started.
-
-4. Keep the terminal open to ensure the WebSocket server remains active.
-
-### Starting the Web Socket Server
-
-1. Open a terminal and navigate to the project root directory.
-
-2. Run the WebSocket server:
-
+1. Open a terminal and navigate to the root directory (where the main.py is located).
+   
+2. Run both servers 
     ```bash
     python main.py
     ```
+    You can use your IDE, too.
+    
+3. The HTTP and Websocket servers will start simultaneously, and you should see messages indicating both servers have started.
 
-3. The WebSocket server will start, and you should see a message indicating the server has started.
-
-4. Keep the terminal open to ensure the WebSocket server remains active.
+4. Open your browser and type the host and port you have written in your .env file or http://localhost:8080 by default.
+   
+5. Keep the terminal open to ensure the WebSocket server remains active.
 
 ## Project Structure
 
